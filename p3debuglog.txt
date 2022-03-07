@@ -1,1 +1,136 @@
+ gcc -g p3final.c
+ ./a.out
+Enter the value of n and r
+4 2
+4C2 is 6
+ gcc -g p3final.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8ae: file p3final.c, line 36.
+(gdb) r
+Starting program: /home/runner/Test3Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p3final.c:36
+36  {
+(gdb) n
+38    input_n_and_r(&n,&r);
+(gdb) s
+input_n_and_r (n=0x7ffc2095e72c, r=0x7ffc2095e730) at p3final.c:4
+4     printf("Enter the value of n and r\n");
+(gdb) n
+Enter the value of n and r
+5     scanf("%d%d",n,r);  
+(gdb) n
+4 2
+6   }
+(gdb) n
+main () at p3final.c:39
+39    result=ncr1(n,r);
+(gdb) s
+ncr1 (n=4, r=2) at p3final.c:26
+26    t1=fact(n);
+(gdb) s
+fact (n=4) at p3final.c:18
+18    int f=1;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) n
+20       f=f*i;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) p f
+$1 = 2
+(gdb) p i
+$2 = 2
+(gdb) n
+20       f=f*i;
+(gdb) p i
+$3 = 3
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) p f
+$4 = 6
+(gdb) n
+20       f=f*i;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) p i
+$5 = 4
+(gdb) p f
+$6 = 24
+(gdb) n
+21    return f;
+(gdb) n
+22  } 
+(gdb) n
+ncr1 (n=4, r=2) at p3final.c:27
+27    t2=fact(r);
+(gdb) s
+fact (n=2) at p3final.c:18
+18    int f=1;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) n
+20       f=f*i;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) n
+21    return f;
+(gdb) n
+22  } 
+(gdb) n
+ncr1 (n=4, r=2) at p3final.c:28
+28    t3=fact(n-r);
+(gdb) s
+fact (n=2) at p3final.c:18
+18    int f=1;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) n
+20       f=f*i;
+(gdb) n
+19    for(int i=2;i<=n;i++)
+(gdb) n
+21    return f;
+(gdb) n
+22  } 
+(gdb) n
+ncr1 (n=4, r=2) at p3final.c:29
+29    return t1/(t2*t3);
+(gdb) n
+30  }
+(gdb) n
+main () at p3final.c:40
+40    output(n,r,result);
+(gdb) s
+output (n=4, r=2, result=6) at p3final.c:33
+33    printf("%dC%d is %d\n",n,r,result);
+(gdb) n
+4C2 is 6
+34  }
+(gdb) n
+main () at p3final.c:41
+41    return 0;
+(gdb) n
+42  }(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 991] will be killed.
+
+Quit anyway? (y or n) y

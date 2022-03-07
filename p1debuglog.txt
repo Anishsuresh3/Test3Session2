@@ -68,8 +68,6 @@ $2 = 6
 22        while(*num3%i==0 && *den3%i==0)
 (gdb) p *num3
 $3 = 3
-(gdb) p *den 3
-No symbol "den" in current context.
 (gdb) p *den3
 $4 = 4
 (gdb) n

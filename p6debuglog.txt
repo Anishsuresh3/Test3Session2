@@ -1,1 +1,101 @@
+ gcc -g p6final.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8f2: file p6final.c, line 39.
+(gdb) r
+Starting program: /home/runner/Test3Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p6final.c:39
+39  {
+(gdb) n
+41    input_string(string);
+(gdb) s
+input_string (string=0x7ffc1c29b4b0 "\001") at p6final.c:5
+5     printf("Enter the string:\n");
+(gdb) n
+Enter the string:
+6     scanf("%[^\n]",string);
+(gdb) n
+hello world hello
+7   }
+(gdb) n
+main () at p6final.c:42
+42    int words=count_words1(string);
+(gdb) s
+count_words1 (string=0x7ffc1c29b4b0 "hello world hello") at p6final.c:24
+24    int i=0;
+(gdb) n
+26    word=strtok(string, " ,\".-");
+(gdb) n
+27    while( word != NULL)
+(gdb) p word
+$1 = 0x7ffc1c29b4b0 "hello"
+(gdb) n
+29        word=strtok(NULL, " ,\".-");
+(gdb) n
+30        i++;
+(gdb) p word
+$2 = 0x7ffc1c29b4b6 "world"
+(gdb) n
+27    while( word != NULL)
+(gdb) p i
+$3 = 1
+(gdb) n
+29        word=strtok(NULL, " ,\".-");
+(gdb) n
+30        i++;
+(gdb) p word
+$4 = 0x7ffc1c29b4bc "hello"
+(gdb) n
+27    while( word != NULL)
+(gdb) p i
+$5 = 2
+(gdb) n
+29        word=strtok(NULL, " ,\".-");
+(gdb) n
+30        i++;
+(gdb) p word
+$6 = 0x0
+(gdb) n
+27    while( word != NULL)
+(gdb) p i
+$7 = 3
+(gdb) n
+32    return i;
+(gdb) n
+33  }
+(gdb) n
+main () at p6final.c:43
+43    output(string,words);
+(gdb) s
+output (string=0x7ffc1c29b4b0 "hello", no_words=3) at p6final.c:36
+36    printf("The number of words is %d\n",no_words);
+(gdb) n
+The number of words is 3
+37  }
+(gdb) n
+main () at p6final.c:44
+44    return 0;
+(gdb) n
+45  }(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 2402] will be killed.
+
+Quit anyway? (y or n) y

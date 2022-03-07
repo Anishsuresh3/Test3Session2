@@ -1,1 +1,167 @@
+ gcc -g p7final.c
+ ./a.out
+Enter the fraction:
+3 45
+Enter the fraction:
+67 45
+The sum of two fractions:
+3/45
+67/45
+is 14/9
+ gcc -g p7final.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8a7: file p7final.c, line 39.
+(gdb) r
+Starting program: /home/runner/Test3Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p7final.c:39
+39    Fraction f1= input_fraction();
+(gdb) s
+input_fraction () at p7final.c:17
+17  {
+(gdb) n
+19    printf("Enter the fraction:\n");
+(gdb) n
+Enter the fraction:
+20    scanf("%d%d",&temp.num,&temp.den);
+(gdb) n
+1 2
+21    return temp;
+(gdb) n
+22  }
+(gdb) n
+main () at p7final.c:40
+40    Fraction f2= input_fraction();
+(gdb) s
+input_fraction () at p7final.c:17
+17  {
+(gdb) n
+19    printf("Enter the fraction:\n");
+(gdb) n
+Enter the fraction:
+20    scanf("%d%d",&temp.num,&temp.den);
+(gdb) n
+1 4
+21    return temp;
+(gdb) n
+22  }
+(gdb) n
+main () at p7final.c:41
+41    Fraction sum=add_fractions(f1,f2);
+(gdb) p f1
+$1 = {num = 1, den = 2}
+(gdb) p f2
+$2 = {num = 1, den = 4}
+(gdb) s
+add_fractions (f1=..., f2=...) at p7final.c:26
+26      sum.den=f1.den*f2.den;
+(gdb) n
+27      sum.num=(f1.num*f2.den)+(f2.num*f1.den);
+(gdb) n
+28      int temp=find_gcd(sum.num,sum.den);
+(gdb) p sum
+$3 = {num = 6, den = 8}
+(gdb) s
+find_gcd (a=6, b=8) at p7final.c:9
+9     while(b!=0){
+(gdb) n
+10      t=b;
+(gdb) n
+11      b=a%b;
+(gdb) p b
+$4 = 8
+(gdb) n
+12      a=t;
+(gdb) p b
+$5 = 6
+(gdb) n
+9     while(b!=0){
+(gdb) p t
+$6 = 8
+(gdb) p b
+$7 = 6
+(gdb) p a
+$8 = 8
+(gdb) n
+10      t=b;
+(gdb) n
+11      b=a%b;
+(gdb) n
+12      a=t;
+(gdb) n
+9     while(b!=0){
+(gdb) p t
+$9 = 6
+(gdb) p b
+$10 = 2
+(gdb) p a
+$11 = 6
+(gdb) n
+10      t=b;
+(gdb) n
+11      b=a%b;
+(gdb) n
+12      a=t;
+(gdb) n
+9     while(b!=0){
+(gdb) p t
+$12 = 2
+(gdb) p b
+$13 = 0
+(gdb) p a
+$14 = 2
+(gdb) n
+14    return a;
+(gdb) n
+15  }
+(gdb) n
+add_fractions (f1=..., f2=...) at p7final.c:29
+29      sum.num=sum.num/temp;
+(gdb) n
+30      sum.den=sum.den/temp;
+(gdb) n
+31      return sum;
+(gdb) p sum
+$15 = {num = 3, den = 4}
+(gdb) n
+32  }
+(gdb) n
+main () at p7final.c:42
+42    output(f1,f2,sum);
+(gdb) s
+output (f1=..., f2=..., sum=...) at p7final.c:35
+35    printf("The sum of two fractions:\n%d/%d\n%d/%d\nis %d/%d\n",f1.num,f1.den,f2.num,f2.den,sum.num,sum.den);
+(gdb) n
+The sum of two fractions:
+1/2
+1/4
+is 3/4
+36  }
+(gdb) n
+main () at p7final.c:43
+43    return 0;
+(gdb) n
+44  }
+(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 2811] will be killed.
+
+Quit anyway? (y or n) y

@@ -1,9 +1,4 @@
  gcc -g p3final.c
- ./a.out
-Enter the value of n and r
-4 2
-4C2 is 6
- gcc -g p3final.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
